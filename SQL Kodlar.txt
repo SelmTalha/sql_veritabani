@@ -1,0 +1,37 @@
+
+--New Query den kod yazılır.
+--CTRL K VE C YORUM SATIRI - CTRL K VE U YORUM SATIRINDAN KALDIRMA
+
+--Tablo Oluşturmak için;
+--create table personel(
+
+--s_no int, -- tablo başlık adı - tipi
+--ad nvarchar(25),
+--soyad nvarchar(25),
+--tel int,
+--d_tarihi date,
+--cinsiyet bit
+--)
+--Cinsiyetteki biti değiştirmek için ;
+--->Alter table personel alter column cinsiyet char(1) --bit özelliği yerine char özelliğini ekledik.
+--Alter table personel add d_yeri nvarchar(25) -> d_yeri satırını tabloya ekledik.
+
+--Alter table personel Drop column d_yeri ->d_yeri 'ni tablodan sildik.
+
+--Tabloya bir bilgi eklemek için ;
+--Insert into personel values(1,'Fulya','Ertok',123,'1998-01-01','k')
+
+--->Tüm verileri silmek için;
+--Delete from personel
+
+--->Güncelleme yapmak için;
+--UPDATE personel set soyad='geyik' where soyad='geyek' ->Geyek soyadını gördüğünde geyik ile değiştir.
+--Delete from personel where ad='yasemin' and soyad='ince' ->Adı yasemin soyadı ince olan satırı bul ve sil
+
+--SELECT * FROM musteri ->Müsteri tablosunun tamamını görmek için yazılır.
+--SELECT ad,soyad FROM musteri ->Musteri tablosundan ad ve soyadı ekrana yazdır.
+
+--Select ad,soyad from musteri where ad like 'b%' /-> musteri tablosu içinde adı b harfi ile başlayanların ad ve soyadını yazdır.
+--Select ad,soyad from musteri where ad like '%e%' /-> musteri tablosu içinde adının içinde e olanların ad ve soyad listesini yazdır.
+
+

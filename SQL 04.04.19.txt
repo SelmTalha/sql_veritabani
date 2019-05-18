@@ -1,0 +1,78 @@
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 1 : Belirli bir tarih aralýðýnda kiralanan araçlarýn kimin tarafýndan kiralandýðýný ve araç,iletiþim bilgilerini yazdýran sorguyu yazdýrýn.
+
+select tbl.Musteri.Mad,tblMusteri.Msoyad,tblAraç.Marka from tblAraç,tblKiralama,tblMusteri where
+tblKiralama.Tarih > '2010-06-01' and tblKiralama.Tarih < '2010-06-15'
+and tblAraç.Aracno = tblKiralama.Aracno
+and tblMusteri.MKod = tblKiralamA.MKod
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 2 : Reno markalý araçlarýn kiralandýðý tarih 01.01.2016'dan önce ise kiralayan kiþinin adýný ve iletiþim no'sunu ekrana yazdýrýn.
+
+select tblMusteri.Mad ,tblMusteri.MSoyad from tblKiralama ,tblMusteri ,tblAraç
+where tblMusteri.Marka like '%Renault%' and tblKiralama.Tarih < '2010-06-15'
+and tblKiralama.Mkod=tblMusteri.Mkod and tblKiralama.Aracno=tblAraç.Aracno
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 3 : Ýsmi M ile baþlayan müþterilerden 01.01.2016 ile 01.01.2018 tarih arasý araç kiralayan kiþilerin hangi aracý hangi tarihte 
+
+kiraladýklarýný ekrana yazdýrýn .
+select Mad,Marka,Tarih from tblMusteri,tblKiralama,tblAraç
+where Mad like '%m' and Tarih < '2010-01-01' and '2010-07-01'
+and tblKiralama.Mkod=tblMusteri.Mkod and tblKiralama.Aracno=tblAraç.Aracno
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 4 : Adý Turgut olan müþterilerin hangi markalý araçlarý kiraladýðýný bulan sorguyu yazýnýz .
+
+select Mad,Marka from tblMusteri,tblAraç where Mad like '%turgut%'
+and tblAraç.Aracno = tblKiralama.Aracno and tblMusteri.Mkod = tblKiralama.Mkod
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 5 : Renault markalý araçlarýn kaç defa kiralandýðýný bulan sorguyu yazýnýz .
+
+Select count(Aracno) from tblKiralama where Aracno=(Select Aracno from tblAraç where Marka like '%Renault%')
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 6 : En fazla kazancý olan aracý bulunuz .
+ 
+Select Marka,Fiyat from tblAraç where Fiyat=(Select max(Fiyat) from tblAraç)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 7 : Müþterileri adýna göre a'dan z'ye doðru sýralayýn.
+
+Select * from tblMusteri Order by Mad asc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 8 : Araç markalarýný ters sýrada sýralayýn. (z'den a'ya doðru)
+
+Select Marka from tblAraç Order by Marka desc // "z'den a'ya =desc" , "a'dan z'ye =asc yada default deðer" 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 9 : Bir günde en fazla ne kadarlýk kazanç elde edildiðini bulan sorguyu yazýn . 
+
+Select sum(Fiyat) from tblAraç
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+--> 10 : Kaç araç olduðunu bulun.
+
+Select count(Plaka) from tblAraç
+
+
+------ Vize--------------
+--> Insert ,delete ,update 
+--> Normalizasyon (tablo)
+--> Veri tekrarý olmaz (özellikler !)
+--> join , cebirsel ifadeler (soldan birleþtirme ,saðdan birleþtirme)
